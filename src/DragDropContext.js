@@ -52,10 +52,18 @@ export default function DragDropContext(backendOrModule) {
         return childContext;
       }
 
+      getReference() {
+        if (this) {
+          return this.getDecoratedComponentInstance();
+        } else {
+          return 'child';
+        }
+      }
+
       render() {
         return (
           <DecoratedComponent {...this.props}
-                              ref='child' />
+            ref={this.getReference} />
         );
       }
     }
